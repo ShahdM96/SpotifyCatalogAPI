@@ -4,11 +4,12 @@ import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import static com.example.catalog.utils.SpotifyUtils.isValidId;
+import static com.example.catalog.utils.SpotifyUtils.isValidURI;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 
-@Disabled("Should be enabled for Junit exercises")
+
 public class SpotifyUtilsTest {
 
     @Test
@@ -23,9 +24,27 @@ public class SpotifyUtilsTest {
         assertFalse(isValidId(null)); // null ID
         assertFalse(isValidId("")); // empty ID
         assertFalse(isValidId("shortID")); // too short ID (less than 15 characters)
-        assertFalse(isValidId("thisIDiswaytoolongtobevalid")); // too long ID (more than 30 characters)
+        assertFalse(isValidId("thisIDiswaytoolongtobevalidaaaa")); // too long ID (more than 30 characters)
         assertFalse(isValidId("!@#$$%^&*()_+")); // invalid characters
         assertFalse(isValidId("1234567890abcdefGHIJKLMNO!@#")); // includes invalid characters
+    }
+
+    @Test
+    public void testValidURI() {
+        assertTrue(isValidURI("spotify:track:6rqhFgbbKwnb9MLmUQDhG6")); // valid Spotify URI
+        assertTrue(isValidURI("spotify:album:1a2B3c4D5e6F7g8H9iJkL0mN")); // valid 22 character ID
+        assertTrue(isValidURI("spotify:artist:a1b2C3d4E5f6G7h8I9jK0L1m2N")); // valid 30 character ID
+        assertTrue(isValidURI("spotify:playlist:6rqhFgbbKwnb9MLmUQDhG6"));
+    }
+
+    @Test
+    public void testInvalidURI() {
+        assertFalse(isValidURI(null)); // null URI
+        assertFalse(isValidURI("")); // empty URI
+        assertFalse(isValidURI("shortURI")); // too short URI (less than 15 characters)
+        assertFalse(isValidURI("thisURIiswaytoolongtobevalidaaaa")); // too long URI (more than 30 characters)
+        assertFalse(isValidURI("!@#$$%^&*()_+")); // invalid characters
+        assertFalse(isValidURI("1234567890abcdefGHIJKLMNO!@#")); // includes invalid characters
     }
 
 }
