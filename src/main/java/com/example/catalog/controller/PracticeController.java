@@ -8,9 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.apache.commons.lang3.StringUtils;
 
 import java.io.IOException;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @RestController
 public class PracticeController {
@@ -32,7 +30,7 @@ public class PracticeController {
                 "Kill Bill", "Daydreaming", "Havana (feat. Young Thug)"
         );
 
-        // TODO sort songs by names
+        Collections.sort(songNames);
 
         return songNames;
     }
@@ -48,7 +46,13 @@ public class PracticeController {
         JsonNode songsNode = objectMapper.readTree(resource.getFile());
         List<Map<String, Object>> songsList = objectMapper.convertValue(songsNode, List.class);
 
-        return songsList.get(0);  // TODO return the song with the highest popularity
+        //return songsList.get(0);
+
+        return songsList.stream() .max(Comparator.comparingInt(song -> (int) song.get("popularity")))
+                .orElseThrow(() -> new IllegalStateException("No songs available"));
+
+        // TODO return the song with the highest popularity
     }
+
 
 }
