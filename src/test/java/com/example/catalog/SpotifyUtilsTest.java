@@ -3,8 +3,7 @@ package com.example.catalog;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-import static com.example.catalog.utils.SpotifyUtils.isValidId;
-import static com.example.catalog.utils.SpotifyUtils.isValidURI;
+import static com.example.catalog.utils.SpotifyUtils.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 
@@ -45,10 +44,15 @@ public class SpotifyUtilsTest {
         assertFalse(isValidURI("1234567890abcdefGHIJKLMNO!@#")); // includes invalid characters
     }
 
-    //@Test
-   // public void testSpotifyClient() {
-        //assertThrows();
-   // }
+    @Test
+    public void testSpotifyClient() {
+        assertThrows(IllegalArgumentException.class, () -> getSpotifyClient(null, null));//both null
+        assertThrows(IllegalArgumentException.class, () -> getSpotifyClient(null, "valid secret"));//id null
+        assertThrows(IllegalArgumentException.class, () -> getSpotifyClient("6rqhFgbbKwnb9MLmUQDhG6", null));//secret null and valid id
+        assertThrows(IllegalArgumentException.class, () -> getSpotifyClient("", "valid secret"));//empty id
+        assertThrows(IllegalArgumentException.class, () -> getSpotifyClient("6rqhFgbbKwnb9MLmUQDhG6", ""));//ampty secret
+
+    }
 
 
 

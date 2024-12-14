@@ -39,8 +39,6 @@ public class SpotifyUtils {
             return false;
         }
         return SPOTIFY_ID_PATTERN.matcher(id).matches();
-
-        //return true;
     }
 
     /**
