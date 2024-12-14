@@ -46,12 +46,10 @@ public class PracticeController {
         JsonNode songsNode = objectMapper.readTree(resource.getFile());
         List<Map<String, Object>> songsList = objectMapper.convertValue(songsNode, List.class);
 
-        //return songsList.get(0);
 
-        return songsList.stream() .max(Comparator.comparingInt(song -> (int) song.get("popularity")))
+        return songsList.stream().max(Comparator.comparingInt(song -> (int) song.get("popularity")))
                 .orElseThrow(() -> new IllegalStateException("No songs available"));
 
-        // TODO return the song with the highest popularity
     }
 
 

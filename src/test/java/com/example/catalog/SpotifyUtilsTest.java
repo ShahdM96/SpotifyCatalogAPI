@@ -5,9 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import static com.example.catalog.utils.SpotifyUtils.isValidId;
 import static com.example.catalog.utils.SpotifyUtils.isValidURI;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
+import static org.junit.jupiter.api.Assertions.*;
 
 
 public class SpotifyUtilsTest {
@@ -46,5 +44,12 @@ public class SpotifyUtilsTest {
         assertFalse(isValidURI("!@#$$%^&*()_+")); // invalid characters
         assertFalse(isValidURI("1234567890abcdefGHIJKLMNO!@#")); // includes invalid characters
     }
+
+    //@Test
+   // public void testSpotifyClient() {
+        //assertThrows();
+   // }
+
+
 
 }
