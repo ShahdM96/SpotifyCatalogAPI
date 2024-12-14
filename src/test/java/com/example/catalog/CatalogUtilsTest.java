@@ -37,6 +37,21 @@ class CatalogUtilsTest {
                               "name": "The Weeknd"
                             }
                           ]
+                        },
+                        {
+                          "duration_ms": 0,
+                          "name": "abc",
+                          "popularity": 50
+                          "album": {
+                            "name": "After Hours",
+                            "release_date": "2020-03-20",
+                            "total_tracks": 14
+                          },
+                          "artists": [
+                            {
+                              "name": "The Weeknd"
+                            }
+                          ]
                         }
                     ]
                 """;
