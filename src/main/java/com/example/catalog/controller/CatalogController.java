@@ -1,8 +1,11 @@
 package com.example.catalog.controller;
 
+import com.example.catalog.model.Artist;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.core.io.ClassPathResource;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
@@ -42,6 +45,23 @@ public class CatalogController {
         } else {
             return objectMapper.createObjectNode().put("error", "Album not found");
         }
+    }
+
+    @GetMapping("/artists/{id}")
+    public ResponseEntity<Artist> getArtistById(@PathVariable String id) throws IOException {
+        if (! SpotifyUtils.isValidId(id)) {
+            return ResponseEntity.badRequest().build();
+        }
+
+        ClassPathResource resource = new ClassPathResource("data/popular_artists.json");
+        JsonNode artists = objectMapper.readTree(resource.getFile());
+
+        JsonNode artistNode = artists.get(id);
+        if (artistNode == null) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
+
+        return  ResponseEntity.ok(objectMapper.treeToValue(artistNode, Artist.class));
     }
 
 }
