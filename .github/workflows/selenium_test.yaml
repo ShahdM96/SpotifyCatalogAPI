@@ -1,0 +1,42 @@
+name: Selenium tests
+
+on:
+  workflow_dispatch:
+    inputs:
+      grid_url:
+        required: true
+        type: string
+        description: Grid to run tests on (by default a local standalone grid)
+        default: http://localhost:4444
+      browser:
+        description: 'Select browsers for testing'
+        required: true
+        type: choice
+        options:
+          - "chrome"
+          - "firefox"
+
+jobs:
+  Test:
+    runs-on: ubuntu-latest
+    services:
+      selenium:
+        image: selenium/standalone-${{ github.event.inputs.browser }}
+        options: --shm-size=2gb
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up JDK 23
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin'
+          java-version: '23'
+
+      - name: Run Tests
+        env:
+          BROWSER: ${{ github.event.inputs.browser }}
+          GRID_URL: ${{ github.event.inputs.grid_url }}
+        run: |
+          mvn -q test
