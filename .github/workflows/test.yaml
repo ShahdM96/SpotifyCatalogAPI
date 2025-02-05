@@ -3,7 +3,7 @@ name: SpotifyCatalogAPI tests
 on:
   push:
     branches:
-      - main
+      - spring-api-project
 
 jobs:
   Test:
