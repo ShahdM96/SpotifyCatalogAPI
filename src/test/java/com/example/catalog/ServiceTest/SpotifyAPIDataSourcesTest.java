@@ -21,9 +21,8 @@ class SpotifyAPIDataSourcesTest {
 
     @BeforeEach
     void setUp() throws IOException {
-        // Create a mock instance of the Spotify service
         mockSpotifyService = mock(SpotifyAPIDataSources.class);
-        spotifyService = new SpotifyAPIDataSources();  // Initialize the real service instance if needed
+        spotifyService = new SpotifyAPIDataSources();
     }
 
     @Test

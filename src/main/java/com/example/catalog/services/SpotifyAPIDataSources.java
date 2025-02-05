@@ -19,8 +19,8 @@ import java.util.Scanner;
 
 public class SpotifyAPIDataSources implements DataSourceService {
 
-    private static final String CLIENT_ID = "e94c97dc0c0f42fea5921f4287ac8baa"; // Replace with your Client ID
-    private static final String CLIENT_SECRET = "d0bce3b8f4d64e4a91da053c48c7627b"; // Replace with your Client Secret
+    private static final String CLIENT_ID = "e94c97dc0c0f42fea5921f4287ac8baa";
+    private static final String CLIENT_SECRET = "d0bce3b8f4d64e4a91da053c48c7627b";
     private static final String TOKEN_URL = "https://accounts.spotify.com/api/token";
     private static final String BASE_URL = "https://api.spotify.com/v1/albums/";
 
