@@ -20,3 +20,5 @@ jobs:
 
       - name: Run Tests
         run: |
+          mvn test -Dtest=JSONDataSourceServiceTest
+          mvn test -Dtest=SpotifyAPIDataSourcesTest
