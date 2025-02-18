@@ -11,6 +11,7 @@ import java.util.List;
 
 class CatalogUtilsTest {
 
+
     private CatalogUtils catalogUtils;
     private List<JsonNode> songs;
     private ObjectMapper objectMapper;
